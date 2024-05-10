@@ -5,7 +5,7 @@
 	//Produccion
 	$conn = sqlsrv_connect( 'WF-SERVER-SQL', array( "Database"=>"WorkFlowV2","CharacterSet" => "UTF-8","Encrypt" => 0));
 
-	$ver = 'Sistema WorkFlow v3.10.2023';
+	$ver = 'Sistema WorkFlow v3.10.2024';
 
 	if (isset($_SERVER['HTTP_ORIGIN'])) {
         header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");

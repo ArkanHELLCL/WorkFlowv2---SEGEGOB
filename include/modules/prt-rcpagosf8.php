@@ -45,7 +45,7 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
     $FLD_Id=$row['FLD_Id'];
     $REQ_Id=$row['REQ_Id'];
     $VRE_Id=$row['VRE_Id'];   
-    $dir='d:/DocumentosSistema/WorkFlow/{'.$REQ_Carpeta.'}/informes/INF_Id-'.$data->INF_Id.'/';
+    $dir='e:/DocumentosSistema/WorkFlow/{'.$REQ_Carpeta.'}/informes/INF_Id-'.$data->INF_Id.'/';
 }
 sqlsrv_free_stmt( $stmt);
 
@@ -168,7 +168,7 @@ $DRE_ObservacionesCD = "";
 $tsql_callSP = "spDatoRequerimienoPorPaso_Consultar ?, ?";
 $params = array(   
         array($VRE_Id, SQLSRV_PARAM_IN),
-        array(61, SQLSRV_PARAM_IN)
+        array(2, SQLSRV_PARAM_IN)
 ); 	
 $stmt = sqlsrv_query( $conn, $tsql_callSP, $params);
 if(sqlsrv_has_rows($stmt) === false){      //No hay registros, no ha sido aceptada
@@ -285,9 +285,9 @@ $stmt = sqlsrv_query( $conn, $tsql_callSP, $params);
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))  
 {    
     //Numero de documento
-    if($row['FDI_Id']==104) $NumeroDocumento = number_format($row['DFO_Dato'],0,',','.');
+    if($row['FDI_Id']==2) $NumeroDocumento = number_format($row['DFO_Dato'],0,',','.');
     //Proveedor
-    if($row['FDI_Id']==105){
+    if($row['FDI_Id']==3){
         $tsql_callSP2 = "spProveedores_Consultar ?";
         $params2 = array(   
                     array($row['DFO_Dato'], SQLSRV_PARAM_IN)            
@@ -302,7 +302,7 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
         sqlsrv_free_stmt( $stmt2);
     }
     //Tipo de documento
-    if($row['FDI_Id']==106){
+    if($row['FDI_Id']==4){
         $tsql_callSP2 = "spItemListaDesplegable_Consultar ?";
         $params2 = array(   
                     array($row['DFO_Dato'], SQLSRV_PARAM_IN)            
@@ -315,11 +315,11 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
         sqlsrv_free_stmt( $stmt2);
     }
     //OC
-    if($row['FDI_Id']==107){        
+    if($row['FDI_Id']==5){        
         $OC = $row['DFO_Dato'];                
     }
     //Moneda
-    if($row['FDI_Id']==108){
+    if($row['FDI_Id']==6){
         $tsql_callSP2 = "spItemListaDesplegable_Consultar ?";
         $params2 = array(   
                     array($row['DFO_Dato'], SQLSRV_PARAM_IN)            
@@ -332,15 +332,15 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC))
         sqlsrv_free_stmt( $stmt2);
     }
     //Monto
-    if($row['FDI_Id']==109) $MontoDocumento = number_format($row['DFO_Dato'],0,',','.');
+    if($row['FDI_Id']==7) $MontoDocumento = number_format($row['DFO_Dato'],0,',','.');
     //Periodo
-    if($row['FDI_Id']==116){
+    if($row['FDI_Id']==14){
         $periodo = explode("-",$row['DFO_Dato']);
         $NombreMes = $meses[intval($periodo[0])-1];
         $txtPeriodo = $NombreMes." de ".$periodo[1];
     }
     //Tipo de servicio
-    if($row['FDI_Id']==117){
+    if($row['FDI_Id']==15){
         $tsql_callSP2 = "spItemListaDesplegable_Consultar ?";
         $params2 = array(   
                     array($row['DFO_Dato'], SQLSRV_PARAM_IN)            
